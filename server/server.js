@@ -2,7 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import { userController } from './models/users/user.controller.js'
 import mongoose from 'mongoose'
-
+import cors from 'cors'
 // port and host
 export const PORT = 8080
 export const URL = 'localhost'
@@ -12,6 +12,7 @@ const app = express()
 // app.use(process.env.MONGO_USER_URL)
 dotenv.config()
 app.use(express.json())
+app.use(cors())
 app.use("/users", userController)
 // app.use("/todo")
 

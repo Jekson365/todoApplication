@@ -24,8 +24,13 @@ userController.post("/register", (req, res) => {
     res.send("user posted")
 })
 
-userController.get("/login", async (req, res) => {
-    var currentUser = await UserSchema.findOne({ username: req.body.username }).exec()
+userController.post("/login", async (req, res) => {
+    var currentUser = await UserSchema.findOne(
+        {
+            username: req.body.username,
+            password: req.body.password
+        }
+    ).exec()
 
     if (currentUser) {
         res.status(200).json(currentUser)
