@@ -8,6 +8,7 @@ export const userController = express()
 
 userController.post("/register", (req, res) => {
     const { username, password } = req.body
+
     if (username.length >= 4 && password.length >= 4) {
         const newUser = new UserSchema(req.body)
         newUser.save()

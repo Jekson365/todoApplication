@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import { userController } from './models/users/user.controller.js'
+import { todoController } from './models/users/todo.controller.js'
 import mongoose from 'mongoose'
 import cors from 'cors'
 // port and host
@@ -14,6 +15,7 @@ dotenv.config()
 app.use(express.json())
 app.use(cors())
 app.use("/users", userController)
+app.use("/todo", todoController)
 // app.use("/todo")
 
 

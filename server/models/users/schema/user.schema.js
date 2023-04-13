@@ -5,5 +5,6 @@ export const UserSchema = new mongoose.model('users',{
         type:String,
         require:true,
     },
+    todo:[String],
     password: String,
 })
