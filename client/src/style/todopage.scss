@@ -1,21 +1,138 @@
+@import url("//cdn.web-fonts.ge/fonts/bpg-web-001-caps/css/bpg-web-001-caps.min.css");
+
+* {
+    font-family: "BPG WEB 001 Caps", sans-serif !important;
+}
+
+.title {
+    color: white;
+    letter-spacing: 2px;
+}
+
+.mw-400 {
+    max-width: 400px;
+    margin: 30px auto;
+}
+.bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    a {
+        color: white;
+    }
+    .user {
+        color: white;
+        background-color: #159895;
+        border-radius: 30px;
+        // width: 100px ;
+        padding:4px 5px;
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+        box-shadow: 0 0 5px 0.1px rgba(0, 0, 0, 0.34);
+        .ic {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: white;
+            color: #002B5B;
+            cursor: pointer;
+            font-size: 15px !important;
+        }
+    }
+}
+
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     margin-top: 30px;
+
+    .todo-form {
+        width: 400px;
+        margin: 20px auto;
+        display: flex;
+        align-items: center;
+        height: 30px;
+        justify-content: center;
+        position: relative;
+
+        input {
+            border: 0;
+            color: white;
+            outline: 0;
+            background-color: #002B5B;
+            height: 100%;
+            width: 100%;
+            padding: 5px 10px;
+            border-radius: 20px;
+
+            &::placeholder {
+                color: white;
+            }
+        }
+
+        button {
+            background: #1A5F7A;
+            color: white;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 0 10px;
+            margin-right: 5px;
+            border-radius: 20px;
+            outline: 0;
+            border: 0;
+            height: 100%;
+        }
+    }
+
     .todo {
-        background-color: red;
+        background-color: #159895;
         min-width: 400px;
-        padding: 10px 5px;
+        padding: 10px 10px;
         border-radius: 30px;
         margin: 5px;
         position: relative;
-        .delete-btn {
-            position: absolute;
-            right: 0;
-            bottom: 50%;
-            transform: translate(-50%,50%);
+        transition: 0.3s;
+        place-content: center;
+        cursor: pointer;
+
+        p {
+            color: #002B5B;
         }
-    }    
+
+        &:hover {
+            min-width: 420px;
+            background: linear-gradient(90.1deg, #159895 13.83%, #29FC71 106.71%);
+            border-radius: 70px;
+        }
+
+        .delete-btn {
+            background-color: #FC2947;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            position: absolute;
+            right: -10px;
+            bottom: 50%;
+            transition: 0.3s;
+            transform: translate(-50%, 50%);
+
+            &:hover {
+                cursor: pointer;
+                background-color: #159895;
+            }
+        }
+    }
 }

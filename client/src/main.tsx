@@ -6,5 +6,6 @@ import './style/index.scss'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <App />
+    {/* <div id="particle-js"></div> */}
   </React.StrictMode>,
 )

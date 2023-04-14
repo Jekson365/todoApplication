@@ -25,7 +25,7 @@ export const Login = () => {
                 }
             })
             .catch((err) => {
-                setError("no user found")
+                setError("სახელი ან პაროლი არასწორია")
                 setTimeout(() => {
                     setError("")
                 }, 2000)
@@ -36,17 +36,20 @@ export const Login = () => {
     return (
         <>
             <form action="post" className='list-form' onSubmit={handleSubmit(handleLogin)}>
-                {error}
+                <h2 className={`title`}>ავტორიზაცია</h2>
+                <div className={`error ${error ? "active-error" : ""}`}>
+                    {error}
+                </div>
                 <input type="text"
-                    placeholder='username'
+                    placeholder='სახელი'
                     {...register("username")}
                 />
                 <input type="password"
-                    placeholder='password'
+                    placeholder='პაროლი'
                     {...register("password")}
                 />
-                <button type="submit" >submit</button>
-                <Link to={'/registration'}>sign up</Link>
+                <button type="submit" >შესვლა</button>
+                <Link className='links' to={'/registration'}>რეგისტრაცია</Link>
             </form>
         </>
     )
