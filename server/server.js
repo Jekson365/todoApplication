@@ -33,3 +33,5 @@ app.listen(PORT, URL, () => {
     console.log("server is listening at port " + PORT)
     connectToDataBase()
 })
+
+var x = 0;

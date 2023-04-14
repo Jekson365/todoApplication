@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export const Login = () => {
     const navigate = useNavigate()
@@ -25,17 +26,17 @@ export const Login = () => {
             })
             .catch((err) => {
                 setError("no user found")
-                setTimeout(()=> {
+                setTimeout(() => {
                     setError("")
-                },2000)
+                }, 2000)
                 throw err
             })
     }
 
     return (
         <>
-            {error}
-            <form action="post" onSubmit={handleSubmit(handleLogin)}>
+            <form action="post" className='list-form' onSubmit={handleSubmit(handleLogin)}>
+                {error}
                 <input type="text"
                     placeholder='username'
                     {...register("username")}
@@ -44,7 +45,8 @@ export const Login = () => {
                     placeholder='password'
                     {...register("password")}
                 />
-                <input type="submit" />
+                <button type="submit" >submit</button>
+                <Link to={'/registration'}>sign up</Link>
             </form>
         </>
     )

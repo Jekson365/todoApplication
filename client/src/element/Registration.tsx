@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 
 export const Registration = () => {
@@ -49,7 +49,7 @@ export const Registration = () => {
     return (
         <>
             {message}
-            <form method='post' onSubmit={handleSubmit(submitData)}>
+            <form method='post' className='list-form' onSubmit={handleSubmit(submitData)}>
                 <input type="text" placeholder='username'
                     {...register("username", {
                         minLength: 4,
@@ -66,7 +66,8 @@ export const Registration = () => {
                     })}
                 />
 
-                <input type="submit" />
+                <button type="submit" >submit</button>
+            <Link to={'/login'}>login</Link>
             </form>
         </>
     )
