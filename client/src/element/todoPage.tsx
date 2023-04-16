@@ -10,7 +10,7 @@ export const TodoPage = () => {
     const [user, setUser] = useState<string>(window.location.href.split("/")[4])
     const [userData, setUserData] = useState<[]>([])
     const [userObject, setUserObject] = useState<any>({})
-
+    const [error, setError] = useState<string>()
     async function getTodo(currentUser: string) {
         const res = await axios.get(`http://localhost:8080/todo/${currentUser}`)
             .then((res) => {
@@ -27,24 +27,42 @@ export const TodoPage = () => {
 
     useEffect(() => {
         getTodo(user)
-        console.log(userData)
-    }, [])
+        // console.log(userData)
+    }, [userObject])
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: { errors }, watch } = useForm()
 
 
     const submitTodo = async (data: any) => {
-        await axios.post(`http://localhost:8080/todo/newtodo/${user}`, data)
+        if (data.todo.length > 4) {
+
+            await axios.post(`http://localhost:8080/todo/newtodo/${user}`, data)
+                .then((res) => {
+                    // location.reload()
+                })
+                .catch((err) => {
+                    throw err
+                })
+        }
+        else {
+            setError("მინიმუმ 4 სიმბოლო ველში")
+            setTimeout(() => {
+                setError("")
+            }, 1000)
+        }
+
+    }
+
+    const deleteTodo = async (name: string) => {
+        await axios.post(`http://localhost:8080/todo/delete/${user}`, { todo: name })
             .then((res) => {
-                console.log(res)
+                // location.reload()
             })
             .catch((err) => {
                 throw err
             })
 
-        location.reload()
     }
-
     return (
         <>
             <div className="bar mw-400">
@@ -57,18 +75,26 @@ export const TodoPage = () => {
                 </div>
             </div>
             <div className="container">
+                <div className={`error ${error ? "active-error" : ""}`}>{error}</div>
                 <form onSubmit={handleSubmit(submitTodo)} className='todo-form'>
                     <input type="text" placeholder='todo'
-                        {...register("todo", { minLength: 4 })}
+                        {...register("todo",
+                            {
+                                minLength: { value: 4, message: "მინიმუმ 4 სიმბოლო" },
+                                required: "ველის შევსება აუცილებელია"
+                            })}
                     />
                     <button type="submit">დამატება</button>
                 </form>
+                <div className="error">dasdksa</div>
                 {userData.map((each: string) => {
                     return (
                         <>
                             <div className='todo'>
                                 <p>{each}</p>
-                                <div className='delete-btn'><MdDelete /></div>
+                                <div className='delete-btn'
+                                    onClick={() => deleteTodo(each)}
+                                ><MdDelete /></div>
                             </div>
                         </>
                     )

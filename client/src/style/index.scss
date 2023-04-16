@@ -16,6 +16,7 @@
 .error {
     white-space: nowrap;
     overflow: hidden;
+    text-align: center;
     color: white;
     font-size: 11px;
     width: 0%;
@@ -23,6 +24,7 @@
 }
 
 .active-error {
+    text-align: center;
     background-color: rgb(216, 14, 14);
     color: white;
     width: 250px;

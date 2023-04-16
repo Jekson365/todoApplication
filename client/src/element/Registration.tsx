@@ -88,7 +88,7 @@ export const Registration = () => {
                 />
 
                 <button type="submit" >რეგისტრაცია</button>
-                <Link className='links' to={'/login'}>შესვლა</Link>
+                <Link className='links' to={'/login'}>ავტორიზაცია</Link>
             </form>
         </>
     )
