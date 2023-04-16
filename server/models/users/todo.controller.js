@@ -41,3 +41,16 @@ todoController.get("/:user", async (req, res) => {
         throw err
     }
 })
+todoController.post("/delete/:user", async (req, res) => {
+    try {
+        const currentTodo = await UserSchema.updateOne(
+            { username: req.params.user },
+            { $pullAll: { todo: [req.body.todo] } }
+        )
+        console.log(currentTodo)
+        res.status(200).json(currentTodo)
+    }
+    catch (err) {
+        throw err
+    }
+})
