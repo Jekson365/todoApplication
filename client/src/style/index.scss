@@ -23,6 +23,10 @@
     transition: 0.3s;
 }
 
+.completed-todo {
+    background: linear-gradient(90.1deg, #159895 13.83%, #11d469 106.71%);
+}
+
 .active-error {
     text-align: center;
     background-color: rgb(216, 14, 14);
@@ -59,6 +63,7 @@ body {
     max-width: 250px;
     margin: 0 auto;
     height: 100vh;
+
     input {
         background: #002B5B;
         border: 0;

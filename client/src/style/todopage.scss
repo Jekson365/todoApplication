@@ -13,25 +13,29 @@
     max-width: 400px;
     margin: 30px auto;
 }
+
 .bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     a {
         color: white;
     }
+
     .user {
         color: white;
         background-color: #159895;
         border-radius: 30px;
         // width: 100px ;
-        padding:4px 5px;
+        padding: 4px 5px;
         width: fit-content;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 4px;
         box-shadow: 0 0 5px 0.1px rgba(0, 0, 0, 0.34);
+
         .ic {
             width: 30px;
             height: 30px;
@@ -104,6 +108,11 @@
         place-content: center;
         cursor: pointer;
 
+        .buttons {
+            background-color: green;
+            width: 100px;
+        }
+
         p {
             color: #002B5B;
         }
@@ -125,6 +134,28 @@
             color: white;
             position: absolute;
             right: -10px;
+            bottom: 50%;
+            transition: 0.3s;
+            transform: translate(-50%, 50%);
+
+            &:hover {
+                cursor: pointer;
+                background-color: #159895;
+            }
+        }
+
+        .check-btn {
+            background-color: #29fc4c;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            position: absolute;
+            right: 25px;
+            font-weight: bold;
             bottom: 50%;
             transition: 0.3s;
             transform: translate(-50%, 50%);

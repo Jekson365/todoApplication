@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { PORT } from '../main'
+import { ADDRESS } from '../main'
 
 export const Login = () => {
     const navigate = useNavigate()
@@ -16,7 +18,7 @@ export const Login = () => {
     const handleLogin = (data: User) => {
         const { username, password } = data
 
-        axios.post("http://localhost:8080/users/login",
+        axios.post(`http://${ADDRESS}:${PORT}/users/login`,
             { username: username, password: password })
             .then((res) => {
                 console.log(res)

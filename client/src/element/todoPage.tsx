@@ -5,6 +5,8 @@ import '../style/todopage.scss'
 import { Link } from 'react-router-dom'
 import { MdDelete } from 'react-icons/md'
 import { FaUserAlt } from 'react-icons/fa'
+import { ADDRESS, PORT } from '../main'
+import { BsCheckLg } from 'react-icons/bs'
 
 export const TodoPage = () => {
     const [user, setUser] = useState<string>(window.location.href.split("/")[4])
@@ -12,11 +14,11 @@ export const TodoPage = () => {
     const [userObject, setUserObject] = useState<any>({})
     const [error, setError] = useState<string>()
     async function getTodo(currentUser: string) {
-        const res = await axios.get(`http://localhost:8080/todo/${currentUser}`)
+        const res = await axios.get(`http://${ADDRESS}:${PORT}/todo/${currentUser}`)
             .then((res) => {
                 if (res.status == 200) {
                     setUserObject(res.data)
-                    setUserData(res.data.todo)
+                    setUserData(res.data.todoObj)
                 }
             })
 
@@ -36,7 +38,7 @@ export const TodoPage = () => {
     const submitTodo = async (data: any) => {
         if (data.todo.length > 4) {
 
-            await axios.post(`http://localhost:8080/todo/newtodo/${user}`, data)
+            await axios.post(`http://${ADDRESS}:${PORT}/todo/newtodo/${user}`, data)
                 .then((res) => {
                     // location.reload()
                 })
@@ -53,8 +55,9 @@ export const TodoPage = () => {
 
     }
 
-    const deleteTodo = async (name: string) => {
-        await axios.post(`http://localhost:8080/todo/delete/${user}`, { todo: name })
+    const deleteTodo = async (each: Object) => {
+        console.log(each)
+        await axios.post(`http://${ADDRESS}:${PORT}/todo/delete/${user}`, each)
             .then((res) => {
                 // location.reload()
             })
@@ -62,6 +65,22 @@ export const TodoPage = () => {
                 throw err
             })
 
+    }
+    const completeTodo = async (id: any) => {
+
+        var ss = userObject.todoObj
+        var ss2 = id.todoId
+
+        const index = ss.findIndex((item: { todoId: any }) => item.todoId == ss2)
+
+
+        await axios.post(`http://${ADDRESS}:${PORT}/todo/mark`, { id: id.todoId })
+
+            .then((res) => {
+            })
+            .catch((err) => {
+                throw err
+            })
     }
     return (
         <>
@@ -87,11 +106,15 @@ export const TodoPage = () => {
                     <button type="submit">დამატება</button>
                 </form>
                 <div className="error">dasdksa</div>
-                {userData.map((each: string) => {
+                {userData.map((each: any) => {
+                    const { todoValue, _id, complete } = each
                     return (
                         <>
-                            <div className='todo'>
-                                <p>{each}</p>
+                            <div className={`todo ${complete ? "completed-todo" : ""}`}>
+                                <p>{todoValue}</p>
+                                <div className='check-btn'
+                                    onClick={() => completeTodo(each)}
+                                ><BsCheckLg /></div>
                                 <div className='delete-btn'
                                     onClick={() => deleteTodo(each)}
                                 ><MdDelete /></div>

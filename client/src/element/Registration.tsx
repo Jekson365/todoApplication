@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-
+import { ADDRESS, PORT } from '../main';
 import { useNavigate, Link } from 'react-router-dom';
 
 
@@ -23,7 +23,7 @@ export const Registration = () => {
         const { username, password, passwordr } = data
         if (password == passwordr) {
             if (username.length >= 4 && password.length >= 4 && password == passwordr) {
-                await axios.post("http://localhost:8080/users/register",
+                await axios.post(`http://${ADDRESS}:${PORT}/users/register`,
                     { username: username, password: password }
                 )
                     .then((res) => {
