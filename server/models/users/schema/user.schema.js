@@ -1,11 +1,12 @@
 import mongoose, { Schema } from "mongoose";
 
-export const UserSchema = new mongoose.model('users',{
+export const UserSchema = new mongoose.model('users', {
     username: {
-        type:String,
-        require:true,
-        unique:true,
+        type: String,
+        require: true,
+        unique: true,
     },
-    todo:[String],
+    todo: [String],
+    todoObj: [{ complete: Boolean, todoValue: String, todoId: Number }],
     password: String,
 })

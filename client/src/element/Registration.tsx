@@ -40,12 +40,6 @@ export const Registration = () => {
                         }
                     })
                     .catch((err: any) => {
-                        // if (err.response.status == 409) {
-
-                        //     setTimeout(() => {
-                        //         setMessage("")
-                        //     }, 1000)
-                        // }
                         throw err
                     })
             }

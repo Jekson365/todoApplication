@@ -12,7 +12,15 @@ todoController.post("/newtodo/:user", async (req, res) => {
         console.log(username)
         const result = await UserSchema.findOneAndUpdate(
             { username: req.params.user },
-            { $push: { todo: todo } },
+            {
+                $push: {
+                    todoObj: {
+                        complete: false,
+                        todoValue: todo,
+                        todoId: Math.floor(Math.random() * 9999999)
+                    }
+                }
+            },
             { new: true }
         )
 
@@ -45,12 +53,29 @@ todoController.post("/delete/:user", async (req, res) => {
     try {
         const currentTodo = await UserSchema.updateOne(
             { username: req.params.user },
-            { $pullAll: { todo: [req.body.todo] } }
+            { $pullAll: { todoObj: [req.body] } }
         )
         console.log(currentTodo)
         res.status(200).json(currentTodo)
     }
     catch (err) {
+        throw err
+    }
+})
+todoController.post("/mark", async (req, res) => {
+    try {
+        const updatedCompleteTodo = await UserSchema.findOneAndUpdate(
+            {
+                "todoObj.todoId": req.body.id,
+            },
+            { $set: { "todoObj.$.complete": true } },
+            { new: true }
+        )
+        console.log(updatedCompleteTodo)
+        res.status(200).json("updated")
+    }
+    catch (err) {
+        res.status(404).json("error!")
         throw err
     }
 })

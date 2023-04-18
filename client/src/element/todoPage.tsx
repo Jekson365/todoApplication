@@ -14,6 +14,7 @@ export const TodoPage = () => {
     const [userObject, setUserObject] = useState<any>({})
     const [error, setError] = useState<string>()
     async function getTodo(currentUser: string) {
+
         const res = await axios.get(`http://${ADDRESS}:${PORT}/todo/${currentUser}`)
             .then((res) => {
                 if (res.status == 200) {
@@ -25,6 +26,7 @@ export const TodoPage = () => {
             .catch((err) => {
                 throw err
             })
+
     }
 
     useEffect(() => {

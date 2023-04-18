@@ -6,12 +6,13 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 // port and host
 export const PORT = 8080
-export const URL = 'localhost'
+export const URL = '192.168.1.91'
 
 const app = express()
 
 // app.use(process.env.MONGO_USER_URL)
 dotenv.config()
+// app.set("trust proxy", true)
 app.use(express.json())
 app.use(cors())
 app.use("/users", userController)
@@ -20,18 +21,20 @@ app.use("/todo", todoController)
 
 
 async function connectToDataBase() {
+
     try {
+
         await mongoose.connect(process.env.MONGO_USER_URL)
         console.log("connected to mongoDB")
+        
     }
     catch (err) {
         throw err
     }
+
 }
 
 app.listen(PORT, URL, () => {
     console.log("server is listening at port " + PORT)
     connectToDataBase()
 })
-
-var x = 0;
