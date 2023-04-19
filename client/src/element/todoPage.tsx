@@ -38,7 +38,15 @@ export const TodoPage = () => {
 
 
     const submitTodo = async (data: any) => {
-        if (data.todo.length > 4) {
+
+        if (data.todo.length <= 4) {
+            setError("მინიმუმ 4 სიმბოლო ველში")
+            setTimeout(() => {
+                setError("")
+            }, 1000)
+
+        }
+        else {
 
             await axios.post(`http://${ADDRESS}:${PORT}/todo/newtodo/${user}`, data)
                 .then((res) => {
@@ -47,12 +55,6 @@ export const TodoPage = () => {
                 .catch((err) => {
                     throw err
                 })
-        }
-        else {
-            setError("მინიმუმ 4 სიმბოლო ველში")
-            setTimeout(() => {
-                setError("")
-            }, 1000)
         }
 
     }
@@ -101,7 +103,6 @@ export const TodoPage = () => {
                     <input type="text" placeholder='todo'
                         {...register("todo",
                             {
-                                minLength: { value: 4, message: "მინიმუმ 4 სიმბოლო" },
                                 required: "ველის შევსება აუცილებელია"
                             })}
                     />

@@ -48,7 +48,11 @@ body {
     height: 100vh;
     background: linear-gradient(180deg, #57C5B6 32.81%, #159895 100%);
 }
-
+.de-active-todo {
+    transition: 0.3s;
+    opacity: 0;
+    transform: translateY(-100%);
+}
 .links {
     font-size: 15px;
 }
