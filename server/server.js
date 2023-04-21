@@ -26,7 +26,7 @@ async function connectToDataBase() {
 
     try {
 
-        await mongoose.connect(process.env.MONGO_USER_URL)
+        await mongoose.connect(process.env.MONGO_USER_URL.toString())
         console.log("connected to mongoDB")
         
     }
