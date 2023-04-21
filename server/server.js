@@ -6,13 +6,15 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 // port and host
 export const PORT = 8080
-export const URL = '192.168.1.91'
+export const URL = 'localhost'
 
 const app = express()
+const router = express.Router()
 
 // app.use(process.env.MONGO_USER_URL)
 dotenv.config()
 // app.set("trust proxy", true)
+app.use("./netlify/functions/api",router)
 app.use(express.json())
 app.use(cors())
 app.use("/users", userController)

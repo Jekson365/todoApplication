@@ -5,7 +5,7 @@ import './style/index.scss'
 
 
 export const PORT = 8080
-export const ADDRESS = '192.168.10.26'
+export const ADDRESS = 'localhost'
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
