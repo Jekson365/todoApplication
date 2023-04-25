@@ -8,8 +8,11 @@
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "^18"
+  },
   "author": "",
-  "license": "ISC",
+  "license": "ISC", 
   "dependencies": {
     "bson": "^5.1.0",
     "cors": "^2.8.5",
